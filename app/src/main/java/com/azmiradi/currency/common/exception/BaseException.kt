@@ -5,10 +5,10 @@ import java.lang.reflect.Type
 
 sealed class BaseException(message: String?) : Exception(message) {
     sealed class Network(message: String? = null) : BaseException(message) {
-        data class Retrial(val messageRes: Int, override val message: String?) :
+        data class Retrial(override val message: String?) :
             Network(message)
 
-        data class Unhandled(val messageRes: Int, override val message: String?) :
+        data class Unhandled(override val message: String?) :
             Network(message)
     }
 
