@@ -6,8 +6,8 @@
 
     <fragment
         android:id="@+id/convertFragment"
-        android:name="com.example.yourapp.HomeFragment"
-        android:label="HomeFragment"
+        android:name="com.azmiradi.currency.features.convert_currency.presentation.fragment.ConvertCurrencyFragment"
+        android:label="ConvertCurrencyFragment"
         tools:layout="@layout/convert_fragment" />
-    
+
 </navigation>

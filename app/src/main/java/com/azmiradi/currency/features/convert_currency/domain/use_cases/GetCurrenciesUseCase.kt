@@ -16,6 +16,7 @@ class GetCurrenciesUseCase @Inject constructor(private val repository: ICurrency
                 val data = repository.getLatestExchangeRate()
                 emit(Resource.Success(data.rates.keys))
             } catch (ex: Exception) {
+                print("ex.message : "+ex.message)
                 if (ex is BaseException)
                     emit(Resource.Failure(ex))
                 else

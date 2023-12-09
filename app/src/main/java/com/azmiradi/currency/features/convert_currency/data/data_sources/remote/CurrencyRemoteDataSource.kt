@@ -12,7 +12,7 @@ class CurrencyRemoteDataSource @Inject constructor(private val apiService: ApiSe
         return executeNetworkRequest {
             apiService.get(
                 pathUrl = LATEST_END_POINT,
-                queryParams = mapOf(ACCESSES_KEY to "")
+                queryParams = mapOf(ACCESSES_KEY to "3b7f28d6b72a43a119577e20164bd064")
             )
         }
     }

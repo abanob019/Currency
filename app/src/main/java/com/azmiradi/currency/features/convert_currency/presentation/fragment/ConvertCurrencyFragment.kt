@@ -14,8 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.azmiradi.currency.common.exception.BaseException
 import com.azmiradi.currency.databinding.ConvertFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ConvertCurrencyFragment : Fragment() {
     private var binding: ConvertFragmentBinding? = null
     private val viewModel: CurrencyConverterViewModel by viewModels()
@@ -38,9 +40,10 @@ class ConvertCurrencyFragment : Fragment() {
 
     private fun setupListeners() {
         binding?.convertButton?.setOnClickListener {
+            viewModel.getCurrencies()
             viewModel.convertCurrency(
-                fromCurrency =binding?.currencyFromSpinner?.selectedItem as String,
-                toCurrency =binding?.currencyToSpinner?.selectedItem as String,
+                fromCurrency =binding?.currencyFromSpinner?.selectedItem as String?,
+                toCurrency =binding?.currencyToSpinner?.selectedItem as String?,
                 amount = binding?.amount?.text?.toString()?.toDoubleOrNull() ?: 1.0
             )
         }
@@ -70,7 +73,7 @@ class ConvertCurrencyFragment : Fragment() {
 
     private fun handleErrorState(error: BaseException?) {
         error?.let {
-            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), it.message?:"", Toast.LENGTH_SHORT).show()
         }
     }
 

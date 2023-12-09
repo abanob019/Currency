@@ -28,7 +28,7 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("")
+            .baseUrl("http://data.fixer.io/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

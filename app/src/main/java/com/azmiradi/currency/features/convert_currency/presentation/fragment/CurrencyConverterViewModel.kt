@@ -33,7 +33,7 @@ class CurrencyConverterViewModel @Inject constructor(
         getCurrencies()
     }
 
-    private fun getCurrencies() {
+     fun getCurrencies() {
         getCurrenciesUseCase().onEach {
             when (it) {
                 is Resource.Failure -> _state.value = CurrencyConverterState(error = it.exception)
@@ -44,7 +44,12 @@ class CurrencyConverterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun convertCurrency(fromCurrency: String, toCurrency: String, amount: Double) {
+    fun convertCurrency(fromCurrency: String?, toCurrency: String?, amount: Double) {
+        if (fromCurrency == null || toCurrency == null)
+        {
+            _state.value = CurrencyConverterState(error = BaseException.Unknown("Data Not Complete"))
+            return
+        }
         converterUseCase(fromCurrency, toCurrency, amount).onEach {
             when (it) {
                 is Resource.Failure -> _state.value = CurrencyConverterState(error = it.exception)
