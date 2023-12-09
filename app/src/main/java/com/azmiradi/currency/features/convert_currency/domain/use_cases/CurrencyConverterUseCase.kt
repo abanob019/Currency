@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class CurrencyConverterUseCase @Inject constructor(private val repository: ICurrencyRepository) {
-    suspend fun invoke(fromCurrency: String, toCurrency: String, amount: Double) =
+    operator fun invoke(fromCurrency: String, toCurrency: String, amount: Double) =
         flow {
             emit(Resource.Loading)
             try {

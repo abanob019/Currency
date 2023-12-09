@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetCurrenciesUseCase @Inject constructor(private val repository: ICurrencyRepository) {
-    suspend fun invoke() =
+     operator fun invoke() =
         flow {
             emit(Resource.Loading)
             try {
